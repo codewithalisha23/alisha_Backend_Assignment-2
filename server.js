@@ -4,22 +4,22 @@ const express = require("express");
 const app = express();
 const PORT = 5000;
 
-// Middleware
+
 app.use(express.json());
 
-// Custom Notes Array
+
 const notes = [];
 
-// 1. GET - All Notes
+
 app.get("/notes", (req, res) => {
     res.json(notes);
 });
 
-// 2. POST - Create New Note
+
 app.post("/notes", (req, res) => {
     const { title, content } = req.body;
 
-    // Validation
+
     if (
         typeof title !== "string" ||
         !title.trim() ||
@@ -46,7 +46,6 @@ app.post("/notes", (req, res) => {
     });
 });
 
-// 3. GET - Single Note
 app.get("/notes/:id", (req, res) => {
     const id = Number(req.params.id);
 
@@ -61,7 +60,6 @@ app.get("/notes/:id", (req, res) => {
     res.json(note);
 });
 
-// 4. PUT - Update Note
 app.put("/notes/:id", (req, res) => {
     const id = Number(req.params.id);
 
@@ -95,7 +93,6 @@ app.put("/notes/:id", (req, res) => {
     });
 });
 
-// 5. DELETE - Delete Note
 app.delete("/notes/:id", (req, res) => {
     const id = Number(req.params.id);
 
